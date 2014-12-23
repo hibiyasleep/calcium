@@ -12,5 +12,5 @@
         "url": "http://github.com/hibiyasleep/calcium/issues",
         "email": "kuriyama@hibiya.moe"
     },
-    "main": "calcium.coffee"
+    "main": "lib/calcium.coffee"
 }
