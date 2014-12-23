@@ -1,6 +1,7 @@
 #
-# file: neis.coffee
-# copyright 2014 Kuriyama hibiya all rights reversed
+# file: calcium.coffee
+# author: Kuriyama hibiya
+# license: MIT
 #
 
 jsdom = require 'jsdom'
