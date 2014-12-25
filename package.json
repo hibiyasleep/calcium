@@ -1,16 +1,20 @@
 {
     "name": "calcium",
     "version": "0.1.0",
-    "description": "Fetch school meals infomation from korea goverment homepage.",
-    "dependicies": {
-        "jsdom": "1.x",
-        "request": "2.x"
-    },
-    "license": "MIT",
     "author": "Kuriyama hibiya <kuriyama@hibiya.moe>",
+    "description": "Fetch school meals infomation from korea goverment homepage.",
+    "license": "MIT",
+    "repository": {
+        "type": "git",
+        "url": "git://github.com/hibiyasleep/calcium"
+    },
     "bugs": {
         "url": "http://github.com/hibiyasleep/calcium/issues",
         "email": "kuriyama@hibiya.moe"
     },
-    "main": "lib/calcium.coffee"
+    "dependicies": {
+        "jsdom": "1.x",
+        "request": "2.x"
+    },
+    "main": "./lib/calcium.js"
 }
