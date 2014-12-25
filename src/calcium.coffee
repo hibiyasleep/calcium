@@ -129,8 +129,8 @@ exports.find = (doe, query, callback) ->
     unless domain
         callback "No such dep: #{doe}", null
 
+    host = domain
     if domain is 'hes.jje.go.kr'
-        host = domain
         domain = '203.230.177.150'
 
     request
@@ -139,6 +139,10 @@ exports.find = (doe, query, callback) ->
         uri: "http://#{domain}/spr_ccm_cm01_100.do?kraOrgNm=#{query}"
         json: true
       , (e, res, j) ->
+
+            if e
+                callback "Request failed: #{e}", null
+                return
 
             l = j.resultSVO.orgDVOList
             r = []
@@ -152,13 +156,13 @@ exports.find = (doe, query, callback) ->
 
             callback null, r
 
-        .on 'error', ->
+        .on 'error', (e) ->
             callback "Request failed: #{e}", null
 
     undefined
 
 # test
 
-exports.get 'C100000158', 2014, 12, (e, d) ->
-    console.dir d[1].lunch
-#exports.find 'jje', '선', console.dir
+#exports.get 'C100000158', 2014, 12, (e, d) ->
+#    console.dir d[1].lunch
+#exports.find '경기도', '디지털', console.dir
