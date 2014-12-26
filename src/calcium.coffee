@@ -12,7 +12,7 @@ jsdom.defaultDocumentFeatures =
     FetchExternalResources: false
     ProcessExternalResources: false
 
-exports.getDomain = (s) ->
+getDomain = (s) ->
     switch s
         #     A : ??
         when 'B', 'sen', 'seoul', '서울', '서울특별시'
@@ -60,7 +60,7 @@ exports.get = (school, year, month, callback) ->
     d = new Date
 
     unless /^[B-KMNP-T][0-9]{9}$/.test school
-        callback message: 'Invalid or unknown code (#{school})', null
+        callback "Invalid or unknown code (#{school})", null
         return
 
     switch arguments.length
@@ -70,13 +70,13 @@ exports.get = (school, year, month, callback) ->
             month = d.getMonth() + 1
         when 4  # school, year, month, callback
             unless 0 < month <= 12
-                callback message: 'Invalid month (1-12)', null
+                callback 'Invalid month (1-12)', null
                 return
         else
-            callback message: 'Invalid argument count', null
+            callback 'Invalid argument count', null
             return
 
-    domain = exports.getDomain school[0]
+    domain = getDomain school[0]
     host = domain
 
     if domain is 'hes.jje.go.kr'
@@ -84,12 +84,11 @@ exports.get = (school, year, month, callback) ->
 
     jsdom.env
         url: "http://#{domain}/sts_sci_md00_001.do?schulCode=#{school}&schulCrseScCode=4&schYm=#{year}.#{month}"
+        headers: Host: host
         QuerySelector: true
-        headers:
-            'Host': host
         done: (e, window) ->
             if e
-                callback message: 'Request failed; see error object', null
+                callback "Request failed: #{e}", null
 
             else
                 r = {}
@@ -122,21 +121,22 @@ exports.get = (school, year, month, callback) ->
 
                 callback null, r
 
+    undefined
+
 exports.find = (doe, query, callback) ->
 
-    domain = exports.getDomain doe
+    domain = getDomain doe
+    host = domain
 
     unless domain
         callback "No such dep: #{doe}", null
 
-    host = domain
     if domain is 'hes.jje.go.kr'
         domain = '203.230.177.150'
 
     request
-        headers:
-            Host: host
         uri: "http://#{domain}/spr_ccm_cm01_100.do?kraOrgNm=#{query}"
+        headers: Host: host
         json: true
       , (e, res, j) ->
 
