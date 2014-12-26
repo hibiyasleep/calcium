@@ -8,9 +8,9 @@ Korea School Meal Information API
 Usage
 -----
 
-* *callback* will get 2 arguments: `(error, data)`
+* `callback` will get 2 arguments: `(error, data)`
   * `error` is String that presents error
-  * `data` is Object or Array
+  * `data` is Object or Array, that contains data
 * `calcium.find gov, query, callback`
   * `gov` is domain prefix, or city name in english, korean, or Yamin
 * `calcium.get code[, year, month], callback`
