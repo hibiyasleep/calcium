@@ -163,6 +163,7 @@ exports.find = (doe, query, callback) ->
 
 # test
 
-#exports.get 'C100000158', 2014, 12, (e, d) ->
-#    console.dir d[1].lunch
-#exports.find '경기도', '디지털', console.dir
+#exports.get 'B100000658', 2014, 12, (e, d) ->
+#    console.dir d
+#exports.find '경기도', '디지털', (e, d) ->
+#    console.dir d
