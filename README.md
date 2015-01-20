@@ -11,9 +11,9 @@ Usage
 * `callback` will get 2 arguments: `(error, data)`
   * `error` is String that presents error
   * `data` is Object or Array, that contains data
-* `calcium.find gov, query, callback`
+* `calcium.find(gov, query, callback)`
   * `gov` is domain prefix, or city name in english, korean, or Yamin
-* `calcium.get code[, year, month], callback`
+* `calcium.get(code[, year, month], callback)`
 
 Example
 -------
