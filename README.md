@@ -20,20 +20,16 @@ Example
 
 ```js
 > calcium = require('calcium')
-> calcium.find('gyeonggi', '디지털', function(e, d){
+> calcium.find('seoul', '린인', function(e, d){
 ... if(e) console.error(e)
 ... else  console.dir(d)
 ... })
 >
-[ { name: '한국디지털미디어고등학교',
-    code: 'J100000855',
+[ { name: '선린인터넷고등학교',
+    code: 'B100000658',
     type: '고등학교',
-    address: '경기도 안산시 단원구 와동' },
-  { name: '양영디지털고등학교',
-    code: 'J100000708',
-    type: '고등학교',
-    address: '경기도 성남시 분당구 서현동' } ]
-> calcium.get('J100000855', 2014, 12, function(e, d){
+    address: '서울특별시 용산구 청파동3가' } ]
+> calcium.get('B100000658', 2014, 12, function(e, d){
 ... if(e) console.error(e)
 ... else  console.dir(d)
 ... })
