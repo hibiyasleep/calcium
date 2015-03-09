@@ -12,6 +12,8 @@ jsdom.defaultDocumentFeatures =
     FetchExternalResources: false
     ProcessExternalResources: false
 
+zfill = (n) ->
+  return ('0' + n).substr -2
 getDomain = (s) ->
     switch s
         #     A : ??
@@ -83,12 +85,12 @@ exports.get = (school, year, month, callback) ->
         domain = '203.230.177.150'
 
     jsdom.env
-        url: "http://#{domain}/sts_sci_md00_001.do?schulCode=#{school}&schulCrseScCode=4&schYm=#{year}.#{month}"
+        url: "http://#{domain}/sts_sci_md00_001.do?schulCode=#{school}&schulCrseScCode=4&schYm=#{year}.#{zfill(month)}"
         headers: Host: host
         QuerySelector: true
         done: (e, window) ->
             if e
-                callback "Request failed: #{e}", null
+                callback "Request failed: #{e.toString()}", null
 
             else
                 r = {}
@@ -163,7 +165,8 @@ exports.find = (doe, query, callback) ->
 
 # test
 
-#exports.get 'B100000658', 2014, 12, (e, d) ->
+#exports.get 'B100000658', 2015, 3, (e, d) ->
 #    console.dir d
 #exports.find '경기도', '디지털', (e, d) ->
 #    console.dir d
+
