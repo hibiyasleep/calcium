@@ -3,7 +3,7 @@ Calcium
 
 Korea School Meal Information API
 
-*NOTE: Some school include Korea Digital Media Highschool doesn't supported*
+*NOTE: 디미고 안 됨 (Does not work with Digital Media Highschool)*
 
 Usage
 -----
