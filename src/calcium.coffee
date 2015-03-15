@@ -14,6 +14,7 @@ jsdom.defaultDocumentFeatures =
 
 zfill = (n) ->
   return ('0' + n).substr -2
+
 getDomain = (s) ->
     switch s
         #     A : ??
@@ -101,7 +102,7 @@ exports.get = (school, year, month, callback) ->
                     if not day? or not day.innerHTML.indexOf '<br>'
                         continue
 
-                    day = day.innerHTML
+                    day = day.innerHTML.replace /[①-⑬]/g, ''
                     date = day.substr 0, day.indexOf '<br>'
                     item = day.split /(\[.+?\])/
 
