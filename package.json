@@ -12,7 +12,7 @@
         "url": "http://github.com/hibiyasleep/calcium/issues",
         "email": "kuriyama@hibiya.moe"
     },
-    "dependicies": {
+    "dependencies": {
         "jsdom": "1.x",
         "request": "2.x"
     },
