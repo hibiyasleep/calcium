@@ -53,9 +53,6 @@ getDomain = (s) ->
         when 'S', 'gne', 'gyeongnam', '경남', '경상남도'
             'hes.gne.go.kr'
         when 'T', 'jje', 'jeju', '제주', '제주도', '탐라', '탐라국'
-            # now showing SERVFAIL on Google DNS
-            # 1: use Host header and IP address
-            # 2: modify /etc/hosts
             'hes.jje.go.kr' # is 203.230.177.150
         else false
 
@@ -80,14 +77,9 @@ exports.get = (school, year, month, callback) ->
             return
 
     domain = getDomain school[0]
-    host = domain
-
-    if domain is 'hes.jje.go.kr'
-        domain = '203.230.177.150'
 
     jsdom.env
         url: "http://#{domain}/sts_sci_md00_001.do?schulCode=#{school}&schulCrseScCode=4&schYm=#{year}.#{zfill(month)}"
-        headers: Host: host
         QuerySelector: true
         done: (e, window) ->
             if e
@@ -129,20 +121,14 @@ exports.get = (school, year, month, callback) ->
 exports.find = (doe, query, callback) ->
 
     domain = getDomain doe
-    host = domain
 
     unless domain
         callback "No such dep: #{doe}", null
 
-    if domain is 'hes.jje.go.kr'
-        domain = '203.230.177.150'
-
     request
         uri: "http://#{domain}/spr_ccm_cm01_100.do?kraOrgNm=#{query}"
-        headers: Host: host
         json: true
       , (e, res, j) ->
-
             if e
                 callback "Request failed: #{e}", null
                 return
@@ -168,6 +154,6 @@ exports.find = (doe, query, callback) ->
 
 #exports.get 'B100000658', 2015, 3, (e, d) ->
 #    console.dir d
-#exports.find '경기도', '디지털', (e, d) ->
+#exports.find '서울', '린인', (e, d) ->
 #    console.dir d
 

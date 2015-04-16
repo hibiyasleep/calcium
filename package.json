@@ -13,7 +13,7 @@
         "email": "kuriyama@hibiya.moe"
     },
     "dependencies": {
-        "jsdom": "1.x",
+        "jsdom": "4.x",
         "request": "2.x"
     },
     "main": "./lib/calcium.js"
