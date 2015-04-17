@@ -134,16 +134,12 @@ exports.find = (doe, query, callback) ->
                 return
 
             l = j.resultSVO.orgDVOList
-            r = []
 
-            for i in l
-                r.push
-                    name: i.kraOrgNm
-                    code: i.orgCode
-                    type: i.schulCrseScCodeNm
-                    address: i.zipAdres
-
-            callback null, r
+            callback null, l.map (o) ->
+                name: o.kraOrgNm
+                code: o.orgCode
+                type: o.schulCrseScCodeNm
+                address: o.zipAdres
 
         .on 'error', (e) ->
             callback "Request failed: #{e}", null
@@ -156,4 +152,3 @@ exports.find = (doe, query, callback) ->
 #    console.dir d
 #exports.find '서울', '린인', (e, d) ->
 #    console.dir d
-
