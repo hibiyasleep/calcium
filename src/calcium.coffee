@@ -126,7 +126,7 @@ exports.find = (doe, query, callback) ->
         callback "No such dep: #{doe}", null
 
     request
-        uri: "http://#{domain}/spr_ccm_cm01_100.do?kraOrgNm=#{query}"
+        uri: "http://#{domain}/spr_ccm_cm01_100.do?kraOrgNm=#{encodeURI query}"
         json: true
       , (e, res, j) ->
             if e
