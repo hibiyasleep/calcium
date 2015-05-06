@@ -98,6 +98,9 @@ exports.get = (school, year, month, callback) ->
                     date = day.substr 0, day.indexOf '<br>'
                     item = day.split /(\[.+?\])/
 
+                    if date is ''
+                        continue
+
                     r[date] = {}
 
                     for i in [1 .. item.length - 1] by 2
