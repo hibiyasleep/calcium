@@ -4,13 +4,10 @@
 # license: MIT
 #
 
+VERSION = '0.2.0'
+
 jsdom = require 'jsdom'
 request = require 'request'
-
-# pass script and get frames
-jsdom.defaultDocumentFeatures =
-    FetchExternalResources: false
-    ProcessExternalResources: false
 
 zfill = (n) ->
   return ('0' + n).substr -2
@@ -78,46 +75,48 @@ exports.get = (school, year, month, callback) ->
 
     domain = getDomain school[0]
 
-    jsdom.env
-        url: "http://#{domain}/sts_sci_md00_001.do?schulCode=#{school}&schulCrseScCode=4&schYm=#{year}.#{zfill(month)}"
-        QuerySelector: true
-        done: (e, window) ->
-            if e
-                callback "Request failed: #{e.toString()}", null
+    request.post
+        url: "http://#{domain}/sts_sci_md00_001.do",
+        form: "schulCode=#{school}&schulCrseScCode=4&ay=#{year}&mm=#{zfill(month)}",
+    , (e, r, d) ->
+        if e
+            callback "Request failed: #{e.toString()}", null
+        else
+            console.log d.length
+            doc = jsdom.jsdom d, querySelector: true
+            window = doc.defaultView
+            r = []
+            q = window.document.querySelectorAll '.tbl_type3 td div'
 
-            else
-                r = {}
-                q = window.document.querySelectorAll '.tbl_type3 td div'
+            for day in q
 
-                for day in q
+                if not day? or not day.innerHTML.indexOf '<br>'
+                    continue
 
-                    if not day? or not day.innerHTML.indexOf '<br>'
-                        continue
+                day = day.innerHTML.replace /[①-⑬]/g, ''
+                date = day.substr 0, day.indexOf '<br>'
+                item = day.split /(\[.+?\])/
 
-                    day = day.innerHTML.replace /[①-⑬]/g, ''
-                    date = day.substr 0, day.indexOf '<br>'
-                    item = day.split /(\[.+?\])/
+                if date is ''
+                    continue
 
-                    if date is ''
-                        continue
+                r[date] = {}
 
-                    r[date] = {}
+                for i in [1 .. item.length - 1] by 2
 
-                    for i in [1 .. item.length - 1] by 2
-
-                        name = item[i].replace /(\[|\])/g, ''
-                        value = item[i+1].split '<br>'
+                    name = item[i].replace /(\[|\])/g, ''
+                    value = item[i+1].split '<br>'
                                          .filter Boolean
 
-                        switch name
-                            when '조식'
-                                r[date].breakfast = value
-                            when '중식'
-                                r[date].lunch = value
-                            when '석식'
-                                r[date].dinner = value
+                    switch name
+                        when '조식'
+                            r[date].breakfast = value
+                        when '중식'
+                            r[date].lunch = value
+                        when '석식'
+                            r[date].dinner = value
 
-                callback null, r
+            callback null, r
 
     undefined
 
@@ -153,5 +152,5 @@ exports.find = (doe, query, callback) ->
 
 #exports.get 'B100000658', 2015, 3, (e, d) ->
 #    console.dir d
-#exports.find '서울', '린인', (e, d) ->
+#exports.find '서울', '선린', (e, d) ->
 #    console.dir d
