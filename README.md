@@ -9,32 +9,26 @@ Usage
 -----
 
 * `callback` gets 2 arguments: `(error, data)`
-  * `error`: String. It presents error.
-  * `data`: Object or Array. It contains data.
+  * `error`: String, presents error.
+  * `data`: Array of Object, contains data.
 * `calcium.find(gov, query, callback)`
-  * `gov` is domain prefix or city name in English, Korean, or Yamin
+  * `gov` is domain prefix or city name in English, Korean, or Yamin.
 * `calcium.get(code[, year, month], callback)`
   * `code` is a school code.
 
 Example
 -------
 
-```js
-> calcium = require('calcium')
-> calcium.find('seoul', '린인', function (e, d) {
-... if (e) console.error(e)
-... else   console.dir(d)
-... })
->
+```coffee
+coffee> calcium = require 'calcium'
+coffee> calcium.find 'seoul', '린인', (e, d) -> console.log e or d
+coffee>
 [ { name: '선린인터넷고등학교',
     code: 'B100000658',
     type: '고등학교',
     address: '서울특별시 용산구 청파동3가' } ]
-> calcium.get('B100000658', 2014, 12, function(e, d){
-... if (e) console.error(e)
-... else   console.dir(d)
-... })
->
+coffee> calcium.get 'B100000658', 2014, 12, (e, d) -> console.log e or d
+coffee>
 [
   ...
   { lunch: [ '칼슘쌀밥', '소고기무국', '꽁치김치조림', '잡채', '포기김치', '딸기쨈설기' ],
