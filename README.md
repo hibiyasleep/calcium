@@ -21,12 +21,14 @@ Example
 
 ```coffee
 coffee> calcium = require 'calcium'
+coffee>
 coffee> calcium.find 'seoul', '린인', (e, d) -> console.log e or d
 coffee>
 [ { name: '선린인터넷고등학교',
     code: 'B100000658',
     type: '고등학교',
     address: '서울특별시 용산구 청파동3가' } ]
+coffee>
 coffee> calcium.get 'B100000658', 2014, 12, (e, d) -> console.log e or d
 coffee>
 [
