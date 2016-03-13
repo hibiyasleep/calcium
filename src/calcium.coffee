@@ -82,7 +82,6 @@ exports.get = (school, year, month, callback) ->
         if e
             callback "Request failed: #{e.toString()}", null
         else
-            console.log d.length
             doc = jsdom.jsdom d, querySelector: true
             window = doc.defaultView
             r = []
