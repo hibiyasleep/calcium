@@ -1,6 +1,6 @@
 {
     "name": "calcium",
-    "version": "0.2.2",
+    "version": "0.3.0",
     "author": "Kuriyama hibiya <kuriyama@hibiya.moe>",
     "description": "Fetch school meals infomation from korea goverment homepage.",
     "readme": "See README.md for details.",
