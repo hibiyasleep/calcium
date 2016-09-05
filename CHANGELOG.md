@@ -1,5 +1,14 @@
 # CHANGELOG
 
+## 0.4.1
+
+* If no callback present, Default callback will be provided.
+  default callback `log`s any output with minimum formatting.
+* Invalid arguments will `throw TypeError`.
+* MoE changed ingridents marker from circle character (like `①`) to
+  parenthesised number (like `(13)`), so fixed this.
+* Minor code improvements, and hardcodes.
+
 ## 0.4.0
 
 * Switched to ES6/2015, from CoffeeScript. Coffee now s*cks than plain.
