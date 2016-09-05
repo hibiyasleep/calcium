@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 0.4.2
+
+* typo: default callback printed wrong date
+
 ## 0.4.1
 
 * If no callback present, Default callback will be provided.
