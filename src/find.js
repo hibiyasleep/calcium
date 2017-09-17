@@ -6,18 +6,13 @@ const getDomain = require('./getDomain')
 const initCallback = (err, result) => {
   return (err)
     ? console.error(err)
-    : console.log(result.map(({ name, code, type, address }) => [
-        `name: ${ name }`,
-        `code: ${ code }`,
-        `type: ${ type }`,
-        `address: ${ address }`
-      ].join('\n')).join('\n'))
+    : console.log(result)
 }
 
 module.exports = (__domain, query, callback = initCallback) => {
   const domain = getDomain(__domain)
   if (!domain) {
-    const err = `No such dep: ${ __domain }`
+    const err = `No such department: ${ __domain }`
 
     return callback(err, null)
   }

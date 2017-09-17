@@ -22,7 +22,7 @@ module.exports = (school, year, month, callback = initCallback) => {
 
   const domain = getDomain(school[0])
   if (!domain) {
-    const err = `No such dep: ${doe}`
+    const err = `No such department: ${doe}`
 
     return callback(err, null)
   }
