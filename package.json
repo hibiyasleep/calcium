@@ -1,6 +1,6 @@
 {
   "name": "calcium",
-  "version": "0.4.4",
+  "version": "0.5.0",
   "author": "Kuriyama hibiya <kuriyama@hibiya.moe>",
   "description": "Fetch school meals infomation from korea goverment homepage.",
   "license": "MIT",
