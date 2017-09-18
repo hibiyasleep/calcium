@@ -1,6 +1,6 @@
 {
   "name": "calcium",
-  "version": "0.4.3",
+  "version": "0.4.4",
   "author": "Kuriyama hibiya <kuriyama@hibiya.moe>",
   "description": "Fetch school meals infomation from korea goverment homepage.",
   "license": "MIT",
@@ -16,5 +16,5 @@
     "jsdom": "5.x",
     "request": "2.x"
   },
-  "main": "./lib/calcium.js"
+  "main": "./src/index.js"
 }
