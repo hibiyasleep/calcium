@@ -28,7 +28,7 @@ module.exports = (school, year, month, callback = initCallback) => {
   }
 
   const payload = {
-    url: `http://${ domain }/sts_sci_md00_001.do`,
+    url: `https://${ domain }/sts_sci_md00_001.do`,
     form: `schulCode=${ school }&schulCrseScCode=4&ay=${ year }&mm=${ zerolFill(month) }`
   }
 
