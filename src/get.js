@@ -37,7 +37,7 @@ module.exports = function fetchSchoolMeal(school, year, month, callback = initCa
     if(e) return callback(e, null)
 
     const window = jsdom.jsdom(body, { querySelector: true }).defaultView
-    const menuTable = window.document.querySelectorAll('.tbl_type3 td div')
+    const menuTable = Array.from(window.document.querySelectorAll('.tbl_type3 td div'))
 
     let result = {}
 
