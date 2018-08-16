@@ -3,28 +3,21 @@ const jsdom = require('jsdom')
 
 const getDomain = require('./getDomain')
 
-const initCallback = (err, result) => {
-  return (err)
-    ? console.error(err)
-    : console.log(result)
+const initCallback = (e, d) => {
+  return e? console.error(e) : console.log(d)
 }
 
-module.exports = (__domain, query, callback = initCallback) => {
-  const domain = getDomain(__domain)
-  if (!domain) {
-    const err = `No such department: ${ __domain }`
-
-    return callback(err, null)
+module.exports = function findSchool(dep, query, callback = initCallback) {
+  const domain = getDomain(dep)
+  if(!domain) {
+    return callback(new Error('No such department: ' + dep), null)
   }
 
-  const schoolName = encodeURIComponent(query)
-  const payload = {
-    uri: `http://${ domain }/spr_ccm_cm01_100.do?kraOrgNm=${ schoolName }`,
+  request({
+    uri: `http://${ domain }/spr_ccm_cm01_100.do?kraOrgNm=${ encodeURIComponent(query) }`,
     json: true
-  }
-
-  request(payload, (err, res, body) => {
-    if (err) return callback(err, null)
+  }, (e, res, body) => {
+    if(e) return callback(e, null)
 
     const foundData = body.resultSVO.orgDVOList
     const result = foundData.map(({ kraOrgNm, orgCode, schulCrseScCodeNm, zipAdres }) => ({

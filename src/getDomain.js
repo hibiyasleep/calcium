@@ -24,15 +24,14 @@ const domains = {
 const prefix = 'stu'
 
 module.exports = (keyword) => {
-  if (!keyword) return
+  if(!keyword) return
 
-  const lowerKeyword = keyword.toLowerCase()
+  keyword = keyword.toLowerCase()
 
   const code = Object.keys(domains)
-  const select = code
-    .filter((domain) => domains[domain].includes(lowerKeyword))[0]
+  const select = code.filter(domain => domains[domain].includes(keyword))[0]
 
-  if (select) {
+  if(select) {
     return `${ prefix }.${ select }.kr`
   }
 }
