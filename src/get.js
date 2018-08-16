@@ -17,6 +17,10 @@ module.exports = (school, year, month, callback = initCallback) => {
   }
 
   const now = new Date()
+  if(typeof year === 'function') {
+    callback = year
+    year = now.getFullYear()
+  }
   if (!year) year = now.getFullYear()
   if (!month) month = now.getMonth() + 1
 
