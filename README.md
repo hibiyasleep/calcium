@@ -3,8 +3,6 @@ Calcium
 
 Korea School Meal Information API
 
-*NOTE: Digital Media Highschool is NOT supported. See the [Dimigo](#dimigo) section for more info.*
-
 Usage
 -----
 
@@ -45,9 +43,3 @@ Example
 ]
 >
 ```
-
-Dimigo
-------
-
-Dimigo has school code of `J100000855`, but they DOES NOT upload meal info to
-NEIS server. you may find something useful from [Dimigoin](https://dimigo.in).
