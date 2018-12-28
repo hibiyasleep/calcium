@@ -9,7 +9,7 @@ const domains = {
   'use.go': ['h', 'use', 'ulsan', '울산', '울산광역시'],
   'sje.go': ['i', 'sje', 'sejong', '세종', '세종시', '세종특별자치시'],
   'goe.go': ['j', 'goe', 'gyeonggi', '경기', '경기도'],
-  'gwe.go': ['k', 'gwe', 'gangwon', '강원', '강원도'],
+  'kwe.go': ['k', 'kwe', 'kangwon', '강원', '강원도'],
   // L : ???
   'cbe.go': ['m', 'cbe', 'chungbuk', '충북', '충청북도'],
   'cne.go': ['n', 'cne', 'chungnam', '충남', '충청남도'],
